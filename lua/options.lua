@@ -6,8 +6,7 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = false
 vim.o.smartindent = true
 vim.o.scrolloff = 12
-vim.o.mouse = ''
-
+vim.o.mouse = ""
 
 vim.keymap.set("n", "J", function()
 	vim.cmd("tabprev")
@@ -32,6 +31,12 @@ end, opts)
 vim.keymap.set("n", "<leader>tq", function()
 	vim.cmd("tabclose")
 end, opts)
+vim.keymap.set("n", "<leader>Tt", function()
+	vim.cmd("tabnew | terminal")
+end, opts)
+vim.keymap.set("n", "<leader>tt", function()
+	vim.cmd("terminal")
+end, opts)
 
 vim.keymap.set("n", "<C-r>l", function()
 	local full_path = vim.fn.expand("%:p"):gsub(" ", "\\ ")
@@ -41,7 +46,6 @@ vim.keymap.set("n", "<C-r>l", function()
 	vim.cmd("tabnew | terminal")
 	--The following function ensures that the text gets typed into the terminal after a delay (100ms) which gives Neovim enough time to open the terminal window
 	vim.defer_fn(function()
-
 		--The following functions makes neovim sends string to the buffer which should currently be the terminal
 		vim.api.nvim_feedkeys("ag++ " .. full_path .. " -o " .. filename, "n", true)
 		vim.api.nvim_feedkeys(" && clear", "n", true)
