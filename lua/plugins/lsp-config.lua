@@ -56,16 +56,15 @@ return {
 			lspconfig.rust_analyzer.setup({
 				capabilities = capabilities,
 			})
-			-- lspconfig.clangd.setup({
-			-- 	capabilities = capabilities,
-			-- })
+			lspconfig.clangd.setup({
+				capabilities = capabilities,
+			})
 			lspconfig.cssls.setup({
 				capabilities = capabilities,
 			})
-
-			-- lspconfig.emmet_ls.setup({
-			-- 	capabilities = capabilities,
-			-- })
+			lspconfig.emmet_language_server.setup({
+				capabilities = capabilities,
+			})
 
 			-- lsp keymaps
 			local opts = {}
