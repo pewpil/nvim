@@ -11,6 +11,24 @@ return {
 			{ expr = true, silent = true, desc = "Accept Copilot suggestion" }
 		)
 
-		vim.g.copilot_filetypes = {}
+		vim.g.copilot_filetypes = {
+			text = true,
+			typescript = true,
+			javascript = true,
+			typescriptreact = true,
+			javascriptreact = true,
+			python = true,
+			lua = true,
+			cpp = true,
+			c = true,
+			java = true,
+			rust = true,
+			go = true,
+			ruby = true,
+			markdown = true,
+			["*"] = true,
+		}
+
+		vim.cmd("Copilot disable")
 	end,
 }

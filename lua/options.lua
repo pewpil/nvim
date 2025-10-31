@@ -58,12 +58,12 @@ vim.keymap.set("n", "<C-r>l", function()
 			vim.api.nvim_feedkeys(" && echo", "n", true)
 			vim.api.nvim_feedkeys("\r", "n", true)
 			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<ESC>", true, false, true), "n", true)
-		end, 50)
+		end, 10)
 	end
-	if file_extension == "ts" or file_extension == "js" then
+	if file_extension == "ts" or file_extension == "js" or file_extension == "mts" or file_extension == "mjs" then
 		vim.defer_fn(function()
 			vim.api.nvim_feedkeys("aclear && node " .. full_path, "n", true)
 			vim.api.nvim_feedkeys(" && echo \r", "n", true)
-		end, 50)
+		end, 10)
 	end
 end, opts)
