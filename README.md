@@ -12,23 +12,22 @@ This is a Neovim configuration tailored for full-stack web development, with a f
     *   Fuzzy Finder: [Telescope](https://github.com/nvim-telescope/telescope.nvim)
     *   Git Integration: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
     *   Debugger: [nvim-dap](https://github.com/mfussenegger/nvim-dap)
+    *   Commenting: [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 *   **UI/UX:**
     *   Statusline: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
     *   Bufferline: [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
     *   File Explorer: [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
     *   Colorscheme: [Tokyonight](https://github.com/folke/tokyonight.nvim)
 *   **Performance:** Lazy loading for fast startup times.
-*   **Testing:** [neotest](https://github.com/nvim-neotest/neotest) for running tests.
 *   **Linting/Formatting:**
-    *   [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim) (Note: deprecated, but functional)
+    *   Formatting: [conform.nvim](https://github.com/stevearc/conform.nvim)
+    *   Linting: [nvim-lint](https://github.com/mfussenegger/nvim-lint)
     *   Linters: ESLint, Ruff
     *   Formatters: Prettier, Black
 *   **Build Tools:** [overseer.nvim](https://github.com/stevearc/overseer.nvim) for task running.
-*   **DevOps:** [docker.vim](https://github.com/is0n/docker-vim) for Docker integration.
 *   **Autocompletion:**
     *   [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
     *   [Copilot](https://github.com/zbirenbaum/copilot.lua)
-*   **Project Management:** [project.nvim](https://github.com/ahmedkhalf/project.nvim)
 
 ## Structure
 
@@ -55,7 +54,6 @@ The leader key is set to `<Space>`.
 *   `<leader>?`: Find recently opened files
 *   `<leader><space>`: Find existing buffers
 *   `<leader>/`: Fuzzily search in current buffer
-*   `<leader>gf`: Search Git files
 *   `<leader>sf`: Search files
 *   `<leader>sh`: Search help
 *   `<leader>sw`: Search current word
@@ -66,6 +64,7 @@ The leader key is set to `<Space>`.
 
 *   `<leader>rn`: Rename
 *   `<leader>ca`: Code action
+*   `<leader>f`: Format
 *   `gd`: Go to definition
 *   `gr`: Go to references
 *   `gI`: Go to implementation
@@ -79,14 +78,14 @@ The leader key is set to `<Space>`.
 *   `<F2>`: Step over
 *   `<F3>`: Step out
 *   `<leader>b`: Toggle breakpoint
+*   `<leader>B`: Set conditional breakpoint
 
-### Testing (neotest)
+### Git (gitsigns)
 
-*   `<leader>t`: Run tests in the current file
-*   `<leader>T`: Run all tests
-*   `<leader>tr`: Run the nearest test
-*   `<leader>ts`: Toggle test summary
-*   `<leader>to`: Show test output
+*   `<leader>gn`: Next hunk
+*   `<leader>gp`: Previous hunk
+*   `<leader>gv`: Preview hunk
+*   `<leader>gb`: Blame line
 
 ### Overseer (Task Runner)
 
@@ -94,5 +93,10 @@ The leader key is set to `<Space>`.
 *   `<leader>or`: Run a task
 *   `<leader>oss`: Save session
 *   `<leader>osl`: Load session
+
+### Comments
+
+*   `gc`: Toggle comment linewise
+*   `gb`: Toggle comment blockwise
 
 Enjoy your new Neovim configuration!
