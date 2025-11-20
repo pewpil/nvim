@@ -48,19 +48,23 @@ The configuration is organized into the following directories:
 
 The leader key is set to `<Space>`.
 
-### General
+### Editor
 
-*   `<leader>e`: Toggle file explorer
+*   `j`/`k`: Move wrapped lines
+
+### Telescope
+
 *   `<leader>?`: Find recently opened files
 *   `<leader><space>`: Find existing buffers
 *   `<leader>/`: Fuzzily search in current buffer
-*   `<leader>sf`: Search files
+*   `<leader>gf`: Find git files
+*   `<leader>sf`: Find files
 *   `<leader>sh`: Search help
 *   `<leader>sw`: Search current word
 *   `<leader>sg`: Search by Grep
 *   `<leader>sd`: Search diagnostics
 
-### LSP
+### LSP (Language Server Protocol)
 
 *   `<leader>rn`: Rename
 *   `<leader>ca`: Code action
@@ -68,15 +72,23 @@ The leader key is set to `<Space>`.
 *   `gd`: Go to definition
 *   `gr`: Go to references
 *   `gI`: Go to implementation
+*   `<leader>D`: Type Definition
+*   `<leader>ds`: Document Symbols
+*   `<leader>ws`: Workspace Symbols
 *   `K`: Hover documentation
 *   `<C-k>`: Signature help
+*   `gD`: Go to Declaration
+*   `<leader>wa`: Workspace Add Folder
+*   `<leader>wr`: Workspace Remove Folder
+*   `<leader>wl`: Workspace List Folders
 
-### Debugger
+### Debugger (nvim-dap)
 
 *   `<F5>`: Start/Continue
 *   `<F1>`: Step into
 *   `<F2>`: Step over
 *   `<F3>`: Step out
+*   `<F7>`: See last session result
 *   `<leader>b`: Toggle breakpoint
 *   `<leader>B`: Set conditional breakpoint
 
@@ -87,14 +99,47 @@ The leader key is set to `<Space>`.
 *   `<leader>gv`: Preview hunk
 *   `<leader>gb`: Blame line
 
-### Overseer (Task Runner)
+### Task Runner (Overseer)
 
 *   `<leader>o`: Toggle Overseer
 *   `<leader>or`: Run a task
 *   `<leader>oss`: Save session
 *   `<leader>osl`: Load session
 
-### Comments
+### File Explorer (neo-tree)
+
+*   `<leader>e`: Toggle file explorer
+*   `o` or `<CR>`: Open file or folder
+*   `<C-v>`: Open in vertical split
+*   `<C-s>`: Open in horizontal split
+*   `<C-t>`: Open in new tab
+*   `a`: Add a file or directory
+*   `d`: Delete a file or directory
+*   `r`: Rename a file or directory
+*   `c`: Copy a file or directory
+*   `x`: Cut a file or directory
+*   `p`: Paste
+*   `q`: Close the tree
+*   `R`: Refresh the tree
+*   `H`: Toggle hidden files
+*   `g?`: Show help
+
+### Autocompletion (nvim-cmp)
+
+*   `<C-n>`/`<Tab>`: Select next item
+*   `<C-p>`/`<S-Tab>`: Select previous item
+*   `<C-b>`: Scroll documentation up
+*   `<C-f>`: Scroll documentation down
+*   `<C-Space>`: Trigger completion
+*   `<C-e>`: Abort completion
+*   `<CR>`: Confirm completion
+
+### Copilot
+
+*   `<C-l>`: Accept suggestion
+*   `<C-h>`: Dismiss suggestion
+
+### Comments (Comment.nvim)
 
 *   `gc`: Toggle comment linewise
 *   `gb`: Toggle comment blockwise
