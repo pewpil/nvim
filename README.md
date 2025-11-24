@@ -13,11 +13,12 @@ This is a Neovim configuration tailored for full-stack web development, with a f
     *   Git Integration: [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
     *   Debugger: [nvim-dap](https://github.com/mfussenegger/nvim-dap)
     *   Commenting: [Comment.nvim](https://github.com/numToStr/Comment.nvim)
+    *   Development Utilities: [neodev.nvim](https://github.com/folke/neodev.nvim)
 *   **UI/UX:**
     *   Statusline: [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
     *   Bufferline: [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
     *   File Explorer: [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
-    *   Colorscheme: [Tokyonight](https://github.com/folke/tokyonight.nvim)
+    *   Colorscheme: [Catppuccin](https://github.com/catppuccin/nvim)
 *   **Performance:** Lazy loading for fast startup times.
 *   **Linting/Formatting:**
     *   Formatting: [conform.nvim](https://github.com/stevearc/conform.nvim)
@@ -51,6 +52,28 @@ The leader key is set to `<Space>`.
 ### Editor
 
 *   `j`/`k`: Move wrapped lines
+*   `<leader>x`: Save all and quit
+*   `<leader>q`: Quit current window
+*   `<leader>t`: Open terminal in current buffer
+*   `<leader>T`: Open terminal in new tab
+*   `<Esc>`: Exit terminal mode (in terminal)
+
+### Window Management
+
+*   `<C-h>`: Go to left split
+*   `<C-l>`: Go to right split
+*   `<C-k>`: Go to upper split
+*   `<C-j>`: Go to lower split
+*   `<leader>h`: Move split left
+*   `<leader>l`: Move split right
+*   `<leader>k`: Move split up
+*   `<leader>j`: Move split down
+
+### Bufferline
+
+*   `J`: Previous tab
+*   `K`: Next tab
+*   `Q`: Close current tab
 
 ### Telescope
 
@@ -109,6 +132,7 @@ The leader key is set to `<Space>`.
 ### File Explorer (neo-tree)
 
 *   `<leader>e`: Toggle file explorer
+*   Line numbering is enabled by default.
 *   `o` or `<CR>`: Open file or folder
 *   `<C-v>`: Open in vertical split
 *   `<C-s>`: Open in horizontal split

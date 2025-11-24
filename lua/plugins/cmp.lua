@@ -49,6 +49,10 @@ return {
       completion = {
         completeopt = 'menu,menuone,noinsert',
       },
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
       mapping = cmp.mapping.preset.insert {
         ['<C-n>'] = cmp.mapping.select_next_item(),
         ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -100,6 +104,7 @@ return {
     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline({ '/', '?' }, {
       mapping = cmp.mapping.preset.cmdline(),
+      window = { completion = cmp.config.window.bordered() },
       sources = {
         { name = 'buffer' },
       },
@@ -108,6 +113,7 @@ return {
     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline(),
+      window = { completion = cmp.config.window.bordered() },
       sources = cmp.config.sources({
         { name = 'path' },
       }, {

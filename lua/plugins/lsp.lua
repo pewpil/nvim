@@ -13,6 +13,17 @@ return {
   },
   config = function()
     -- [[ Configure LSP ]]
+
+    vim.diagnostic.config {
+      virtual_text = {
+        spacing = 4,
+        prefix = '●',
+      },
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+    }
+
     --  This function gets run when an LSP connects to a particular buffer.
     local on_attach = function(_, bufnr)
       -- NOTE: Remember that lua is a real programming language, and as such it is possible

@@ -6,7 +6,7 @@ return {
   },
   opts = {
     options = {
-      mode = 'buffers', -- set to "tabs" to only show tabpages instead
+      mode = 'tabs', -- set to "tabs" to only show tabpages instead
       -- separator_style = 'slant',
       show_buffer_close_icons = false,
       show_close_icon = false,
@@ -21,4 +21,10 @@ return {
       end,
     },
   },
+  config = function(_, opts)
+    require('bufferline').setup(opts)
+    vim.keymap.set('n', 'J', '<cmd>tabprevious<CR>', { silent = true, desc = 'Previous tab' })
+    vim.keymap.set('n', 'K', '<cmd>tabnext<CR>', { silent = true, desc = 'Next tab' })
+    vim.keymap.set('n', 'Q', '<cmd>tabclose<CR>', { silent = true, desc = 'Close current tab' })
+  end,
 }

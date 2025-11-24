@@ -10,5 +10,16 @@ return {
     -- If you want icons for file types, you can follow these instructions:
     -- https://github.com/nvim-tree/nvim-web-devicons#usage
     vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { desc = 'Toggle file explorer' })
+    require('neo-tree').setup {
+      event_handlers = {
+        {
+          event = 'neo_tree_buffer_enter',
+          handler = function()
+            vim.wo.number = true
+            vim.wo.relativenumber = true
+          end,
+        },
+      },
+    }
   end,
 }
