@@ -132,6 +132,7 @@ The leader key is set to `<Space>`.
 ### File Explorer (neo-tree)
 
 *   `<leader>e`: Toggle file explorer
+*   `t`: Open in new tab
 *   Line numbering is enabled by default.
 *   `o` or `<CR>`: Open file or folder
 *   `<C-v>`: Open in vertical split
