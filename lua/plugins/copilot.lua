@@ -6,15 +6,13 @@ return {
     config = function()
       require('copilot').setup {
         suggestion = {
-          auto_trigger = false,
+          auto_trigger = true,
           keymap = {
             accept = '<C-l>',
             dismiss = '<C-h>',
           },
         },
       }
-      vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', { desc = 'Copilot Enable' })
-      vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', { desc = 'Copilot Disable' })
     end,
   },
   {

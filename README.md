@@ -74,8 +74,6 @@ The leader key is set to `<Space>`.
 *   `J`: Previous tab
 *   `K`: Next tab
 *   `Q`: Close current tab
-*   `<leader><`: Move tab left
-*   `<leader>>`: Move tab right
 
 ### Telescope
 
@@ -165,8 +163,6 @@ The leader key is set to `<Space>`.
 
 *   `<C-l>`: Accept suggestion
 *   `<C-h>`: Dismiss suggestion
-*   `<leader>ce`: Enable Copilot
-*   `<leader>cd`: Disable Copilot
 
 ### Comments (Comment.nvim)
 
