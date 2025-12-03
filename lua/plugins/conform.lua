@@ -11,6 +11,9 @@ return {
       javascriptreact = { 'prettierd' },
       typescriptreact = { 'prettierd' },
       solidjs = { 'prettierd' },
+      css = { 'prettierd' },
+      scss = { 'prettierd' },
+      sass = { 'prettierd' },
     },
     format_on_save = {
       -- These options will be passed to conform.format()

@@ -9,6 +9,7 @@ return {
       typescriptreact = { 'eslint_d' },
       solidjs = { 'eslint_d' },
       python = { 'ruff' },
+      dockerfile = { 'hadolint' },
     }
     vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost', 'InsertLeave' }, {
       callback = function()

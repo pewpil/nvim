@@ -75,6 +75,7 @@ return {
         'eslint_d',
         'black',
         'ruff',
+        'hadolint',
       },
     }
 
@@ -96,7 +97,22 @@ return {
       --
       -- But for this example, we'll just use tsserver
       --
-      cssls = {},
+      dockerls = {},
+      docker_compose_language_service = {},
+      cssls = {
+        settings = {
+          css = {
+            format = {
+              spaceAroundSelectorSeparator = true,
+            },
+          },
+          scss = {
+            format = {
+              spaceAroundSelectorSeparator = true,
+            },
+          },
+        },
+      },
       html = {},
       -- jsonls = {},
       ts_ls = {},
