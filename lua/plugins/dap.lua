@@ -27,7 +27,7 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the languages you use
         'delve',
-        'node2',
+        'js-debug-adapter',
         'python',
       },
     }
