@@ -114,6 +114,7 @@ return {
         },
       },
       html = {},
+      tailwindcss = {},
       -- jsonls = {},
       ts_ls = {},
       pylsp = {},
