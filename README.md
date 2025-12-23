@@ -5,7 +5,7 @@ This is a Neovim configuration tailored for full-stack web development, with a s
 ## Features
 
 *   **Plugin Manager:** [lazy.nvim](https://github.com/folke/lazy.nvim)
-*   **Language Support:** Lua, JavaScript, TypeScript, Python, HTML, CSS, SQL, Docker.
+*   **Language Support:** Lua, JavaScript, TypeScript, Python, HTML, CSS, TailwindCSS, SQL, Docker.
 *   **Core Plugins:**
     *   **LSP:** [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) (with [mason.nvim](https://github.com/williamboman/mason.nvim) for automatic installation).
     *   **Treesitter:** [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) for syntax highlighting and parsing.
