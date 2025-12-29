@@ -24,50 +24,53 @@ return {
       severity_sort = true,
     }
 
-    --  This function gets run when an LSP connects to a particular buffer.
-    local on_attach = function(_, bufnr)
-      -- NOTE: Remember that lua is a real programming language, and as such it is possible
-      -- to define small helper functions to reduce boilerplate
-      local nmap = function(keys, func, desc)
-        if desc then
-          desc = 'LSP: ' .. desc
+    -- This function gets run when an LSP connects to a particular buffer.
+    vim.api.nvim_create_autocmd('LspAttach', {
+      group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
+      callback = function(event)
+        local bufnr = event.buf
+        -- NOTE: Remember that lua is a real programming language, and as such it is possible
+        -- to define small helper functions to reduce boilerplate
+        local nmap = function(keys, func, desc)
+          if desc then
+            desc = 'LSP: ' .. desc
+          end
+
+          vim.keymap.set('n', keys, func, { buffer = bufnr, noremap = true, silent = true, desc = desc })
         end
 
-        vim.keymap.set('n', keys, func, { buffer = bufnr, noremap = true, silent = true, desc = desc })
-      end
+        nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+        nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-      nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-      nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+        nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+        nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+        nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+        nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+        nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+        nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-      nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-      nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-      nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-      nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-      nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-      nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+        -- See `:help K` for why this keymap
+        nmap('gh', vim.lsp.buf.hover, 'Hover Documentation')
+        nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
-      -- See `:help K` for why this keymap
-      nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-      nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+        -- Lesser used LSP functionality
+        nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+        nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+        nmap('<leader>wl', function()
+          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, '[W]orkspace [L]ist Folders')
 
-      -- Lesser used LSP functionality
-      nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-      nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-      nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-      nmap('<leader>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end, '[W]orkspace [L]ist Folders')
-
-      -- Create a command `:Format` local to the LSP buffer
-      vim.keymap.set('n', '<leader>f', function()
-        vim.lsp.buf.format()
-      end, { buffer = bufnr, desc = 'Format current buffer with LSP' })
-    end
+        -- Create a command `:Format` local to the LSP buffer
+        vim.keymap.set('n', '<leader>f', function()
+          vim.lsp.buf.format()
+        end, { buffer = bufnr, desc = 'Format current buffer with LSP' })
+      end,
+    })
 
     -- mason-lspconfig requires that these setup functions are called in this order
     -- before lspconfig setup.
     require('mason').setup()
-    require('mason-lspconfig').setup()
     require('mason-tool-installer').setup {
       ensure_installed = {
         'prettierd',
@@ -117,6 +120,7 @@ return {
       tailwindcss = {},
       -- jsonls = {},
       ts_ls = {},
+      denols = {},
       pylsp = {},
       sqlls = {},
       --
@@ -141,11 +145,16 @@ return {
       ensure_installed = vim.tbl_keys(servers),
       handlers = {
         function(server_name)
-          require('lspconfig')[server_name].setup {
+          local server_config = {
             capabilities = capabilities,
-            on_attach = on_attach,
             settings = servers[server_name],
           }
+
+          if server_name == 'denols' then
+            server_config.root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')
+          end
+
+          require('lspconfig')[server_name].setup(server_config)
         end,
       },
     }
