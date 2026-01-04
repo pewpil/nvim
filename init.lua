@@ -24,6 +24,13 @@ vim.opt.rtp:prepend(lazypath)
 require('core.options')
 require('core.keymaps')
 
+-- Set filetype for .rest files
+vim.filetype.add({
+  extension = {
+    rest = 'http',
+  },
+})
+
 -- Load plugins
 require('lazy').setup('plugins')
 
