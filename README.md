@@ -13,6 +13,7 @@ This is a Neovim configuration tailored for full-stack web development, with a s
     *   **Git Integration:** [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim).
     *   **Debugger:** [nvim-dap](https://github.com/mfussenegger/nvim-dap) with UI [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui).
     *   **Commenting:** [Comment.nvim](https://github.com/numToStr/Comment.nvim) (with context-aware support for JSX/TSX via [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)).
+    *   **HTTP Client:** [rest.nvim](https://github.com/rest-nvim/rest.nvim) (supports `.http` and `.rest` files).
     *   **Development Utilities:** [neodev.nvim](https://github.com/folke/neodev.nvim) for Neovim Lua development.
 *   **UI/UX:**
     *   **Statusline:** [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim).
@@ -156,3 +157,8 @@ The leader key is set to `<Space>`.
 
 *   `gc`: Toggle comment (linewise).
 *   `gb`: Toggle comment (blockwise).
+
+### HTTP Client (rest.nvim)
+
+*   `<leader>rr`: Run request under cursor.
+*   `<leader>rl`: Re-run last request.
