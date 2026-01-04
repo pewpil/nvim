@@ -12,7 +12,7 @@ This is a Neovim configuration tailored for full-stack web development, with a s
     *   **Fuzzy Finder:** [Telescope](https://github.com/nvim-telescope/telescope.nvim).
     *   **Git Integration:** [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim).
     *   **Debugger:** [nvim-dap](https://github.com/mfussenegger/nvim-dap) with UI [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui).
-    *   **Commenting:** [Comment.nvim](https://github.com/numToStr/Comment.nvim).
+    *   **Commenting:** [Comment.nvim](https://github.com/numToStr/Comment.nvim) (with context-aware support for JSX/TSX via [nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)).
     *   **Development Utilities:** [neodev.nvim](https://github.com/folke/neodev.nvim) for Neovim Lua development.
 *   **UI/UX:**
     *   **Statusline:** [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim).

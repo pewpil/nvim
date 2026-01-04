@@ -1,14 +1,14 @@
 -- [[ Setting options ]]
 -- See `:help option-list`
 vim.opt.backup = false -- Do not create a backup file
-vim.opt.clipboard = 'unnamedplus' -- Use system clipboard
+-- vim.opt.clipboard = 'unnamedplus' -- Use system clipboard
 vim.opt.cmdheight = 1 -- More space in the neovim command line for displaying messages
-vim.opt.completeopt = { 'menuone', 'noselect' } -- Options for code completion
+vim.opt.completeopt = { "menuone", "noselect" } -- Options for code completion
 vim.opt.conceallevel = 0 -- So that I can see `` in markdown files
-vim.opt.fileencoding = 'utf-8' -- The encoding written to a file
+vim.opt.fileencoding = "utf-8" -- The encoding written to a file
 vim.opt.hlsearch = true -- Highlight all matches on previous search pattern
 vim.opt.ignorecase = true -- Ignore case in search patterns
-vim.opt.mouse = 'a' -- Allow the mouse to be used in neovim
+vim.opt.mouse = "a" -- Allow the mouse to be used in neovim
 vim.opt.pumheight = 10 -- Pop up menu height
 vim.opt.showmode = false -- Don't show the mode since it's in the status line
 vim.opt.showtabline = 2 -- Always show tabs
@@ -29,11 +29,11 @@ vim.opt.cursorline = true -- Highlight the current line
 vim.opt.number = true -- Set numbered lines
 vim.opt.relativenumber = true -- Set relative numbered lines
 vim.opt.numberwidth = 4 -- Set number column width to 2 {default 4}
-vim.opt.signcolumn = 'yes' -- Always show the sign column, otherwise it would shift the text each time
-vim.opt.wrap = false -- Display lines as one long line
+vim.opt.signcolumn = "yes" -- Always show the sign column, otherwise it would shift the text each time
+vim.opt.wrap = true -- Display lines as one long line
 vim.opt.scrolloff = 8 -- Lines of context
 vim.opt.sidescrolloff = 8 -- Columns of context
-vim.opt.guifont = 'monospace:h17' -- The font used in graphical neovim applications
-vim.opt.shortmess:append 'c'
-vim.cmd 'set whichwrap+=<,>,[,],h,l'
-vim.cmd [[set iskeyword+=-]]
+vim.opt.guifont = "monospace:h17" -- The font used in graphical neovim applications
+vim.opt.shortmess:append("c")
+vim.cmd("set whichwrap+=<,>,[,],h,l")
+vim.cmd([[set iskeyword+=-]])
