@@ -5,9 +5,10 @@ This is a Neovim configuration tailored for full-stack web development, with a s
 ## Features
 
 *   **Plugin Manager:** [lazy.nvim](https://github.com/folke/lazy.nvim)
-*   **Language Support:** Lua, JavaScript, TypeScript, Python, HTML, CSS, TailwindCSS, SQL, Docker.
+*   **Language Support:** Lua, JavaScript, TypeScript, Python, HTML, CSS, TailwindCSS, SQL, Docker, Godot (GDScript).
 *   **Core Plugins:**
     *   **LSP:** [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) (with [mason.nvim](https://github.com/williamboman/mason.nvim) for automatic installation).
+    *   **Godot:** [vim-godot](https://github.com/habamax/vim-godot) for Godot Editor integration.
     *   **Treesitter:** [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) for syntax highlighting and parsing.
     *   **Fuzzy Finder:** [Telescope](https://github.com/nvim-telescope/telescope.nvim).
     *   **Git Integration:** [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim).

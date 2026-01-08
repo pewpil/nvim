@@ -79,6 +79,7 @@ return {
         'black',
         'ruff',
         'hadolint',
+        'gdtoolkit',
       },
     }
 
@@ -119,12 +120,27 @@ return {
       html = {},
       tailwindcss = {},
       -- jsonls = {},
-      ts_ls = {},
+      ts_ls = {
+        settings = {
+          javascript = {
+            format = {
+              insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
+            },
+          },
+          typescript = {
+            format = {
+              insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
+            },
+          },
+        },
+      },
       denols = {},
       pylsp = {},
       sqlls = {},
       --
       --
+
+      gdscript = {},
 
       lua_ls = {
         Lua = {
@@ -141,8 +157,12 @@ return {
     -- Ensure the servers above are installed
     local mason_lspconfig = require 'mason-lspconfig'
 
+    local servers_to_install = vim.tbl_filter(function(key)
+      return key ~= 'gdscript'
+    end, vim.tbl_keys(servers))
+
     mason_lspconfig.setup {
-      ensure_installed = vim.tbl_keys(servers),
+      ensure_installed = servers_to_install,
       handlers = {
         function(server_name)
           local server_config = {
@@ -151,12 +171,29 @@ return {
           }
 
           if server_name == 'denols' then
-            server_config.root_dir = require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')
+            server_config.root_dir = require('lspconfig.util').root_pattern('deno.json', 'deno.jsonc')
           end
 
-          require('lspconfig')[server_name].setup(server_config)
+          -- Merge config and enable
+          if vim.lsp.config[server_name] then
+             for k, v in pairs(server_config) do
+               vim.lsp.config[server_name][k] = v
+             end
+          else
+             vim.lsp.config[server_name] = server_config
+          end
+          vim.lsp.enable(server_name)
         end,
       },
     }
+
+    -- GDScript setup (not managed by mason)
+    vim.lsp.config.gdscript = {
+      capabilities = capabilities,
+      cmd = vim.lsp.rpc.connect('127.0.0.1', 6005),
+      root_markers = { 'project.godot', '.git' },
+      filetypes = { 'gd', 'gdscript', 'gdscript3' },
+    }
+    vim.lsp.enable('gdscript')
   end,
 }

@@ -12,7 +12,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     -- build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'dockerfile', 'javascript', 'typescript', 'tsx', 'http', 'json' },
+      ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'dockerfile', 'javascript', 'typescript', 'tsx', 'http', 'json', 'gdscript', 'gdshader', 'godot_resource' },
       auto_install = true,
       highlight = {
         enable = true,
