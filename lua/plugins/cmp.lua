@@ -60,10 +60,7 @@ return {
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete({}),
 				["<C-e>"] = cmp.mapping.abort(),
-				["<CR>"] = cmp.mapping.confirm({
-					behavior = cmp.ConfirmBehavior.Replace,
-					select = true,
-				}),
+				["<CR>"] = cmp.mapping.confirm({ select = true }),
 				["<Tab>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						cmp.select_next_item()
@@ -108,6 +105,7 @@ return {
 			sources = {
 				{ name = "buffer" },
 			},
+			completion = { completeopt = "menu,menuone,noselect" },
 		})
 
 		-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
@@ -119,6 +117,7 @@ return {
 			}, {
 				{ name = "cmdline" },
 			}),
+			completion = { completeopt = "menu,menuone,noselect" },
 		})
 	end,
 }

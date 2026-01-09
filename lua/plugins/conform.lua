@@ -6,10 +6,10 @@ return {
       -- Conform will run multiple formatters sequentially
       python = { 'black' },
       -- Use a sub-process to run the formatter
-      -- javascript = { 'prettierd' },
-      -- typescript = { 'prettierd' },
-      -- javascriptreact = { 'prettierd' },
-      -- typescriptreact = { 'prettierd' },
+      javascript = { 'prettierd' },
+      typescript = { 'prettierd' },
+      javascriptreact = { 'prettierd' },
+      typescriptreact = { 'prettierd' },
       solidjs = { 'prettierd' },
       css = { 'prettierd' },
       scss = { 'prettierd' },

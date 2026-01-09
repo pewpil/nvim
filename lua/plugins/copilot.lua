@@ -3,6 +3,16 @@ return {
     'zbirenbaum/copilot.lua',
     cmd = 'Copilot',
     event = 'InsertEnter',
+    keys = {
+      {
+        '<leader>ct',
+        function()
+          require('copilot.suggestion').toggle_auto_trigger()
+          print('Copilot suggestions toggled')
+        end,
+        desc = 'Copilot Toggle',
+      },
+    },
     config = function()
       require('copilot').setup {
         filetypes = { ["*"] = true },

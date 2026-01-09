@@ -2,12 +2,27 @@ return {
   {
     "rest-nvim/rest.nvim",
     ft = "http",
+    build = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
-    },
-    build = false, -- Try disabling build if it's trying to build rocks
-    rocks = {
-      hererocks = false,
+      {
+         "lunarmodules/lua-mimetypes",
+         name = "mimetypes",
+         build = false,
+         init = function()
+            local lazy_path = vim.fn.stdpath("data") .. "/lazy"
+            package.path = package.path .. ";" .. lazy_path .. "/mimetypes/?.lua;" .. lazy_path .. "/mimetypes/?/init.lua"
+         end
+      },
+      {
+         "manoelcampos/xml2lua",
+         name = "xml2lua",
+         build = false,
+         init = function()
+             local lazy_path = vim.fn.stdpath("data") .. "/lazy"
+             package.path = package.path .. ";" .. lazy_path .. "/xml2lua/?.lua;" .. lazy_path .. "/xml2lua/?/init.lua"
+         end
+      }
     },
     config = function()
       require("rest-nvim").setup({

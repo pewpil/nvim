@@ -63,8 +63,8 @@ return {
 
         -- Create a command `:Format` local to the LSP buffer
         vim.keymap.set('n', '<leader>f', function()
-          vim.lsp.buf.format()
-        end, { buffer = bufnr, desc = 'Format current buffer with LSP' })
+          require('conform').format({ async = true, lsp_fallback = true })
+        end, { buffer = bufnr, desc = 'Format current buffer with Conform' })
       end,
     })
 
