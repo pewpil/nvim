@@ -38,7 +38,12 @@ return {
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		require("luasnip.loaders.from_vscode").lazy_load()
+		require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.fn.stdpath("config") .. "/snippets" } })
 		luasnip.config.setup({})
+
+		-- Extend javascriptreact and typescriptreact with html snippets
+		luasnip.filetype_extend("javascriptreact", { "html" })
+		luasnip.filetype_extend("typescriptreact", { "html" })
 
 		cmp.setup({
 			snippet = {
@@ -77,6 +82,26 @@ return {
 						luasnip.jump(-1)
 					else
 						fallback()
+					end
+				end, { "i", "s" }),
+				["<C-l>"] = cmp.mapping(function()
+					if luasnip.jumpable(1) then
+						luasnip.jump(1)
+					else
+						-- Check if we are in a snippet and jump to the start
+						while luasnip.jumpable(-1) do
+							luasnip.jump(-1)
+						end
+					end
+				end, { "i", "s" }),
+				["<C-h>"] = cmp.mapping(function()
+					if luasnip.jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						-- Check if we are in a snippet and jump to the end
+						while luasnip.jumpable(1) do
+							luasnip.jump(1)
+						end
 					end
 				end, { "i", "s" }),
 			}),

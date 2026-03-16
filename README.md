@@ -30,8 +30,11 @@ This is a Neovim configuration tailored for full-stack web development, with a s
         *   **Formatters:** `prettierd` (JS/TS/CSS/HTML/Solid), `stylua` (Lua), `black` (Python).
         *   **Linters:** `eslint_d` (JS/TS/Solid), `ruff` (Python), `hadolint` (Docker).
 *   **Build Tools:** [overseer.nvim](https://github.com/stevearc/overseer.nvim) for task running.
-*   **Autocompletion:**
-    *   [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) with snippets (LuaSnip).
+*   **Autocompletion & Snippets:**
+    *   [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) for completion.
+    *   [LuaSnip](https://github.com/L3MON4D3/LuaSnip) for snippet engine.
+    *   **Custom SolidJS Snippets:** Comprehensive snippets for SolidJS (signals, effects, components, etc.) located in `snippets/`.
+    *   **JSX/TSX Enhancements:** Extended `javascriptreact` and `typescriptreact` to include HTML snippets for better autocompletion.
     *   [Copilot](https://github.com/zbirenbaum/copilot.lua).
 
 ## Structure
@@ -42,6 +45,7 @@ The configuration is organized into the following directories:
 *   `lua/core/`: Core Neovim settings (`options.lua`) and global keymaps (`keymaps.lua`).
 *   `lua/plugins/`: Plugin configurations. Each file represents a plugin or a related group of plugins.
 *   `ftplugin/`: Filetype-specific configurations (e.g., `sass.lua`, `scss.lua`).
+*   `snippets/`: Custom VSCode-style snippets for SolidJS and JSX.
 
 ## Installation
 
@@ -139,7 +143,7 @@ The leader key is set to `<Space>`.
 *   `<leader>oss`: Save session.
 *   `<leader>osl`: Load session.
 
-### Autocompletion (nvim-cmp)
+### Autocompletion (nvim-cmp) & Snippets (LuaSnip)
 
 *   `<C-n>` / `<Tab>`: Select next item.
 *   `<C-p>` / `<S-Tab>`: Select previous item.
@@ -148,11 +152,13 @@ The leader key is set to `<Space>`.
 *   `<C-Space>`: Trigger completion manually.
 *   `<C-e>`: Abort completion.
 *   `<CR>`: Confirm completion.
+*   **`<C-l>`**: Jump forward through snippet placeholders (cycles back to start).
+*   **`<C-h>`**: Jump backward through snippet placeholders (cycles back to end).
 
 ### Copilot
 
-*   `<C-l>`: Accept suggestion.
-*   `<C-h>`: Dismiss suggestion.
+*   `<C-j>`: Accept suggestion.
+*   `<C-k>`: Dismiss suggestion.
 
 ### Comments (Comment.nvim)
 

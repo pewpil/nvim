@@ -1,0 +1,230 @@
+{
+  "SolidJS Component": {
+    "prefix": "scomp",
+    "body": [
+      "import { createSignal, onMount } from 'solid-js';",
+      "",
+      "const ${1:ComponentName} = () => {",
+      "  return (",
+      "    <div>",
+      "      ${0:Content}",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:ComponentName};"
+    ],
+    "description": "Create a SolidJS component"
+  },
+  "createSignal": {
+    "prefix": "csig",
+    "body": [
+      "const [${1:name}, set${1/(.*)/${1:/capitalize}/}] = createSignal(${2:initialValue});"
+    ],
+    "description": "Create a SolidJS signal"
+  },
+  "createEffect": {
+    "prefix": "ceffect",
+    "body": [
+      "createEffect(() => {",
+      "  ${0}",
+      "});"
+    ],
+    "description": "Create a SolidJS effect"
+  },
+  "createMemo": {
+    "prefix": "cmemo",
+    "body": [
+      "const ${1:name} = createMemo(() => ${2:initialValue});"
+    ],
+    "description": "Create a SolidJS memo"
+  },
+  "createResource": {
+    "prefix": "cres",
+    "body": [
+      "const [${1:data}, { mutate, refetch }] = createResource(${2:fetcher});"
+    ],
+    "description": "Create a SolidJS resource"
+  },
+  "createStore": {
+    "prefix": "cstore",
+    "body": [
+      "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = createStore({ ${2:prop}: ${3:value} });"
+    ],
+    "description": "Create a SolidJS store"
+  },
+  "onMount": {
+    "prefix": "onm",
+    "body": [
+      "onMount(() => {",
+      "  ${0}",
+      "});"
+    ],
+    "description": "onMount lifecycle"
+  },
+  "onCleanup": {
+    "prefix": "onc",
+    "body": [
+      "onCleanup(() => {",
+      "  ${0}",
+      "});"
+    ],
+    "description": "onCleanup lifecycle"
+  },
+  "Show Component": {
+    "prefix": "sshow",
+    "body": [
+      "<Show when={${1:condition}} fallback={${2:<div>Loading...</div>}}>",
+      "  ${0}",
+      "</Show>"
+    ],
+    "description": "SolidJS Show component"
+  },
+  "For Component": {
+    "prefix": "sfor",
+    "body": [
+      "<For each={${1:items}}>",
+      "  {(item, index) => (",
+      "    ${0}",
+      "  )}",
+      "</For>"
+    ],
+    "description": "SolidJS For component"
+  },
+  "Index Component": {
+    "prefix": "sindex",
+    "body": [
+      "<Index each={${1:items}}>",
+      "  {(item, index) => (",
+      "    ${0}",
+      "  )}",
+      "</Index>"
+    ],
+    "description": "SolidJS Index component"
+  },
+  "Switch Component": {
+    "prefix": "sswitch",
+    "body": [
+      "<Switch fallback={${1:<div>Default</div>}}>",
+      "  <Match when={${2:condition}}>",
+      "    ${0}",
+      "  </Match>",
+      "</Switch>"
+    ],
+    "description": "SolidJS Switch component"
+  },
+  "Portal Component": {
+    "prefix": "sportal",
+    "body": [
+      "<Portal mount={${1:document.body}}>",
+      "  ${0}",
+      "</Portal>"
+    ],
+    "description": "SolidJS Portal component"
+  },
+  "Dynamic Component": {
+    "prefix": "sdynamic",
+    "body": [
+      "<Dynamic component={${1:componentName}} ${2:props} />"
+    ],
+    "description": "SolidJS Dynamic component"
+  },
+  "JSX Div": {
+    "prefix": "div",
+    "body": [
+      "<div>",
+      "  $0",
+      "</div>"
+    ],
+    "description": "JSX div element"
+  },
+  "JSX Div Class": {
+    "prefix": "div.",
+    "body": [
+      "<div class={${1:}}>",
+      "  $0",
+      "</div>"
+    ],
+    "description": "JSX div element with class"
+  },
+  "JSX Div Id": {
+    "prefix": "div#",
+    "body": [
+      "<div id={${1:}}>",
+      "  $0",
+      "</div>"
+    ],
+    "description": "JSX div element with id"
+  },
+  "JSX Div Id Class": {
+    "prefix": "div#.",
+    "body": [
+      "<div id={${1:}} class={${2:}}>",
+      "  $0",
+      "</div>"
+    ],
+    "description": "JSX div element with id and class"
+  },
+  "JSX Span": {
+    "prefix": "span",
+    "body": [
+      "<span>$0</span>"
+    ],
+    "description": "JSX span element"
+  },
+  "JSX Span Class": {
+    "prefix": "span.",
+    "body": [
+      "<span class={${1:}}>$0</span>"
+    ],
+    "description": "JSX span element with class"
+  },
+  "JSX Button": {
+    "prefix": "btn",
+    "body": [
+      "<button onClick={${1:handleClick}}>",
+      "  ${0:Button Text}",
+      "</button>"
+    ],
+    "description": "JSX button element"
+  },
+  "JSX Button Class": {
+    "prefix": "btn.",
+    "body": [
+      "<button onClick={${1:handleClick}} class={${2:}}>",
+      "  ${0:Button Text}",
+      "</button>"
+    ],
+    "description": "JSX button element with class"
+  },
+  "JSX Input": {
+    "prefix": "input",
+    "body": [
+      "<input type={${1:text}} value={${2:value()}} onInput={${3:handleInput}} />"
+    ],
+    "description": "JSX input element"
+  },
+  "JSX Input Class": {
+    "prefix": "input.",
+    "body": [
+      "<input type={${1:text}} value={${2:value()}} onInput={${3:handleInput}} class={${4:}} />"
+    ],
+    "description": "JSX input element with class"
+  },
+  "JSX Ul": {
+    "prefix": "ul",
+    "body": [
+      "<ul>",
+      "  $0",
+      "</ul>"
+    ],
+    "description": "JSX ul element"
+  },
+  "JSX Li": {
+    "prefix": "li",
+    "body": [
+      "<li>$0</li>"
+    ],
+    "description": "JSX li element"
+  }
+}
