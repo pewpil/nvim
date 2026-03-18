@@ -126,17 +126,34 @@ return {
       tailwindcss = {},
       -- jsonls = {},
       ts_ls = {
+        init_options = {
+          preferences = {
+            disableSuggestions = true,
+          },
+          formattingOptions = {
+            insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
+            insertSpaceBeforeFunctionParenthesis = false,
+          },
+        },
         settings = {
           javascript = {
             format = {
+              enable = true,
               insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
               insertSpaceBeforeFunctionParenthesis = false,
+              insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis = false,
+              insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces = false,
+              insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = false,
             },
           },
           typescript = {
             format = {
+              enable = true,
               insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
               insertSpaceBeforeFunctionParenthesis = false,
+              insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis = false,
+              insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces = false,
+              insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces = false,
             },
           },
         },
