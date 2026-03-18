@@ -29,6 +29,11 @@ return {
       group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
         local bufnr = event.buf
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client.name == 'ts_ls' then
+          client.server_capabilities.documentFormattingProvider = true
+        end
+
         -- NOTE: Remember that lua is a real programming language, and as such it is possible
         -- to define small helper functions to reduce boilerplate
         local nmap = function(keys, func, desc)
@@ -125,11 +130,13 @@ return {
           javascript = {
             format = {
               insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
+              insertSpaceBeforeFunctionParenthesis = false,
             },
           },
           typescript = {
             format = {
               insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
+              insertSpaceBeforeFunctionParenthesis = false,
             },
           },
         },

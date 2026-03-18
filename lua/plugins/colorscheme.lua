@@ -145,6 +145,8 @@ return {
           TelescopePromptTitle = { bg = "NONE", fg = colors.surface1 },
           TelescopeResultsTitle = { bg = "NONE", fg = colors.surface1 },
           TelescopePreviewTitle = { bg = "NONE", fg = colors.surface1 },
+          CmpPmenuBorder = { bg = "NONE", fg = colors.surface1 },
+          CmpDocBorder = { bg = "NONE", fg = colors.surface1 },
         }
       end,
     }
