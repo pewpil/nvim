@@ -22,7 +22,18 @@ return {
       underline = true,
       update_in_insert = false,
       severity_sort = true,
+      float = {
+        source = "always",
+        border = "rounded",
+      },
     }
+
+    vim.api.nvim_create_autocmd("CursorHold", {
+      group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+      callback = function()
+        vim.diagnostic.open_float(nil, { focus = false, scope = "line" })
+      end,
+    })
 
     -- This function gets run when an LSP connects to a particular buffer.
     vim.api.nvim_create_autocmd('LspAttach', {
