@@ -26,5 +26,7 @@ return {
     vim.keymap.set('n', 'J', '<cmd>tabprevious<CR>', { silent = true, desc = 'Previous tab' })
     vim.keymap.set('n', 'K', '<cmd>tabnext<CR>', { silent = true, desc = 'Next tab' })
     vim.keymap.set('n', 'Q', '<cmd>tabclose<CR>', { silent = true, desc = 'Close current tab' })
+    vim.keymap.set('n', '<S-h>', '<cmd>tabmove -1<CR>', { silent = true, desc = 'Move tab left' })
+    vim.keymap.set('n', '<S-l>', '<cmd>tabmove +1<CR>', { silent = true, desc = 'Move tab right' })
   end,
 }
