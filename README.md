@@ -101,6 +101,14 @@ The leader key is set to `<Space>`.
 *   `<leader>sg`: Live grep search.
 *   `<leader>sd`: Search diagnostics.
 
+### Tabs (Bufferline)
+
+*   `J`: Previous tab.
+*   `K`: Next tab.
+*   `<S-h>`: Move tab left.
+*   `<S-l>`: Move tab right.
+*   `Q`: Close current tab.
+
 ### LSP (Language Server Protocol)
 
 *   `gd`: Go to definition.
@@ -111,7 +119,7 @@ The leader key is set to `<Space>`.
 *   `<leader>rn`: Rename symbol.
 *   `<leader>ca`: Code action.
 *   `<leader>f`: Format current buffer.
-*   `K`: Hover documentation.
+*   `gh`: Hover documentation.
 *   `<C-k>`: Signature help.
 *   `<leader>ds`: Document symbols.
 *   `<leader>ws`: Workspace symbols.
