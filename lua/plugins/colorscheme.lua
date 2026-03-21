@@ -151,6 +151,8 @@ return {
           FloatBorder = { bg = "NONE", fg = colors.surface1 },
           FloatTitle = { bg = "NONE", fg = colors.surface1 },
           Pmenu = { bg = "NONE" },
+          LspFloatWinNormal = { bg = "NONE" },
+          LspFloatWinBorder = { bg = "NONE", fg = colors.surface1 },
         }
       end,
     }

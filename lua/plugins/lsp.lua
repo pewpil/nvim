@@ -15,10 +15,18 @@ return {
     -- [[ Configure LSP ]]
 
     -- Set borders for LSP hover and signature help
-    local border = "rounded"
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
-
+    local border = {
+      { "╭", "FloatBorder" },
+      { "─", "FloatBorder" },
+      { "╮", "FloatBorder" },
+      { "│", "FloatBorder" },
+      { "╯", "FloatBorder" },
+      { "─", "FloatBorder" },
+      { "╰", "FloatBorder" },
+      { "│", "FloatBorder" },
+    }
+    
+    -- Diagnostic config
     vim.diagnostic.config {
       virtual_text = {
         spacing = 4,
@@ -29,16 +37,24 @@ return {
       severity_sort = true,
       float = {
         source = "always",
-        border = "rounded",
+        border = border,
       },
     }
 
     vim.api.nvim_create_autocmd("CursorHold", {
       group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
       callback = function()
-        vim.diagnostic.open_float(nil, { focus = false, scope = "line" })
+        vim.diagnostic.open_float(nil, {
+          focus = false,
+          scope = "line",
+          border = border,
+        })
       end,
     })
+
+    -- Global handlers (fallback)
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 
     -- This function gets run when an LSP connects to a particular buffer.
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -71,8 +87,12 @@ return {
         nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
         -- See `:help K` for why this keymap
-        nmap('gh', vim.lsp.buf.hover, 'Hover Documentation')
-        nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+        nmap('gh', function()
+          vim.lsp.buf.hover({ border = border })
+        end, 'Hover Documentation')
+        nmap('<C-k>', function()
+          vim.lsp.buf.signature_help({ border = border })
+        end, 'Signature Documentation')
 
         -- Lesser used LSP functionality
         nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
