@@ -147,6 +147,10 @@ return {
           TelescopePreviewTitle = { bg = "NONE", fg = colors.surface1 },
           CmpPmenuBorder = { bg = "NONE", fg = colors.surface1 },
           CmpDocBorder = { bg = "NONE", fg = colors.surface1 },
+          NormalFloat = { bg = "NONE" },
+          FloatBorder = { bg = "NONE", fg = colors.surface1 },
+          FloatTitle = { bg = "NONE", fg = colors.surface1 },
+          Pmenu = { bg = "NONE" },
         }
       end,
     }
