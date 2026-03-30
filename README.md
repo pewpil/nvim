@@ -35,7 +35,6 @@ This is a Neovim configuration tailored for full-stack web development, with a s
     *   [LuaSnip](https://github.com/L3MON4D3/LuaSnip) for snippet engine.
     *   **Custom SolidJS Snippets:** Comprehensive snippets for SolidJS (signals, effects, components, etc.) located in `snippets/`.
     *   **JSX/TSX Enhancements:** Extended `javascriptreact` and `typescriptreact` to include HTML snippets for better autocompletion.
-    *   [Copilot](https://github.com/zbirenbaum/copilot.lua).
 
 ## Structure
 
@@ -163,11 +162,6 @@ The leader key is set to `<Space>`.
 *   **`<C-l>`**: Jump forward through snippet placeholders (cycles back to start).
 *   **`<C-h>`**: Jump backward through snippet placeholders (cycles back to end).
 
-### Copilot
-
-*   `<C-j>`: Accept suggestion.
-*   `<C-k>`: Dismiss suggestion.
-
 ### Comments (Comment.nvim)
 
 *   `gc`: Toggle comment (linewise).
@@ -183,3 +177,4 @@ The leader key is set to `<Space>`.
 *   `<leader>re`: Set environment (Kulala).
 *   `<leader>rr`: Run request under cursor (Rest.nvim).
 *   `<leader>rl`: Re-run last request (Rest.nvim).
+request (Rest.nvim).
