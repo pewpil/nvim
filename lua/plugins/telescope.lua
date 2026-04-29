@@ -24,6 +24,8 @@ return {
           i = {
             ['<C-u>'] = false,
             ['<C-d>'] = false,
+            ['<C-f>'] = require('telescope.actions').preview_scrolling_down,
+            ['<C-b>'] = require('telescope.actions').preview_scrolling_up,
           },
         },
       },

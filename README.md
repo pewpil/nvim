@@ -99,6 +99,8 @@ The leader key is set to `<Space>`.
 *   `<leader>sw`: Search current word (grep).
 *   `<leader>sg`: Live grep search.
 *   `<leader>sd`: Search diagnostics.
+*   **`<C-f>`** (insert mode): Scroll preview down.
+*   **`<C-b>`** (insert mode): Scroll preview up.
 
 ### Tabs (Bufferline)
 

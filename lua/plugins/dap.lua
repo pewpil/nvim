@@ -45,6 +45,7 @@ return {
         'delve',
         'js-debug-adapter',
         'python',
+        'codelldb',
       },
     }
 

@@ -35,5 +35,6 @@ vim.opt.scrolloff = 8 -- Lines of context
 vim.opt.sidescrolloff = 8 -- Columns of context
 vim.opt.guifont = "monospace:h17" -- The font used in graphical neovim applications
 vim.opt.shortmess:append("c")
+vim.opt.wildoptions:remove("pum")
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])

@@ -14,8 +14,16 @@ return {
       css = { 'prettierd' },
       scss = { 'prettierd' },
       sass = { 'prettierd' },
+      json = { 'prettierd' },
+      jsonc = { 'prettierd' },
+      c = { 'clang-format' },
+      cpp = { 'clang-format' },
+      sql = { 'sql_formatter' },
     },
     formatters = {
+      sql_formatter = {
+        prepend_args = { '-c', vim.fn.expand('~/.config/nvim/sql-formatter.json') },
+      },
       remove_space = {
         command = 'sed',
         args = { '-E', 's/function \\(/function(/g' },

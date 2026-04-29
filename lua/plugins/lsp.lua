@@ -10,6 +10,7 @@ return {
     -- Useful status updates for LSP
     -- NOTE: `opts = {}` is required for setup({})` to be called
     { 'j-hui/fidget.nvim', opts = {} },
+    'b0o/SchemaStore.nvim',
   },
   config = function()
     -- [[ Configure LSP ]]
@@ -101,11 +102,6 @@ return {
         nmap('<leader>wl', function()
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, '[W]orkspace [L]ist Folders')
-
-        -- Create a command `:Format` local to the LSP buffer
-        vim.keymap.set('n', '<leader>f', function()
-          require('conform').format({ async = true, lsp_fallback = true })
-        end, { buffer = bufnr, desc = 'Format current buffer with Conform' })
       end,
     })
 
@@ -121,6 +117,12 @@ return {
         'ruff',
         'hadolint',
         'gdtoolkit',
+        'clangd',
+        'clang-format',
+        'json-lsp',
+        'sqlls',
+        'sql-formatter',
+        'sqlfluff',
       },
     }
 
@@ -142,6 +144,22 @@ return {
       --
       -- But for this example, we'll just use tsserver
       --
+      clangd = {
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--clang-tidy",
+          "--header-insertion=iwyu",
+          "--completion-style=detailed",
+          "--function-arg-placeholders",
+          "--fallback-style=llvm",
+        },
+        init_options = {
+          usePlaceholders = true,
+          completeUnimported = true,
+          clangdFileStatus = true,
+        },
+      },
       dockerls = {},
       docker_compose_language_service = {},
       cssls = {
@@ -160,11 +178,17 @@ return {
       },
       html = {},
       tailwindcss = {},
-      -- jsonls = {},
+      jsonls = {
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      },
       ts_ls = {
         init_options = {
           preferences = {
-            disableSuggestions = true,
           },
           formattingOptions = {
             insertSpaceAfterFunctionKeywordForAnonymousFunctions = false,
@@ -196,7 +220,11 @@ return {
       },
       denols = {},
       pylsp = {},
-      sqlls = {},
+      sqlls = {
+        handlers = {
+          ["textDocument/publishDiagnostics"] = function() end,
+        },
+      },
       --
       --
 
@@ -225,10 +253,18 @@ return {
       ensure_installed = servers_to_install,
       handlers = {
         function(server_name)
+          local config = servers[server_name] or {}
           local server_config = {
             capabilities = capabilities,
-            settings = servers[server_name],
           }
+
+          if config.settings or config.init_options or config.cmd or config.filetypes or config.root_dir or config.handlers then
+            -- If the config is complex, merge it directly
+            server_config = vim.tbl_deep_extend('force', server_config, config)
+          else
+            -- Otherwise, assume the config IS the settings table
+            server_config.settings = config
+          end
 
           if server_name == 'denols' then
             server_config.root_dir = require('lspconfig.util').root_pattern('deno.json', 'deno.jsonc')

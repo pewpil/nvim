@@ -1,6 +1,5 @@
 return {
 	"hrsh7th/nvim-cmp",
-	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
 		-- Snippet Engine & its associated nvim-cmp source
 		{
@@ -106,15 +105,22 @@ return {
 				end, { "i", "s" }),
 			}),
 			sources = {
-				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
+				{ name = "nvim_lsp", keyword_length = 0 },
+				{ name = "luasnip", keyword_length = 0 },
 				{ name = "path" },
 				{ name = "buffer" },
 				{ name = "nvim_lua" },
-				{ name = "cmdline" },
 			},
 		})
 		-- Set configuration for specific filetype.
+		cmp.setup.filetype({ "sql", "mysql", "plsql" }, {
+			sources = cmp.config.sources({
+				{ name = "vim-dadbod-completion" },
+			}, {
+				{ name = "buffer" },
+			}),
+		})
+
 		cmp.setup.filetype("gitcommit", {
 			sources = cmp.config.sources({
 				{ name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
@@ -129,7 +135,6 @@ return {
 			sources = {
 				{ name = "buffer" },
 			},
-			completion = { completeopt = "menu,menuone,noselect" },
 		})
 
 		-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
@@ -140,7 +145,6 @@ return {
 			}, {
 				{ name = "cmdline" },
 			}),
-			completion = { completeopt = "menu,menuone,noselect" },
 		})
 	end,
 }

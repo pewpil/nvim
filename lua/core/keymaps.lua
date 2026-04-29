@@ -25,6 +25,7 @@ vim.keymap.set('n', '<leader>x', '<cmd>wa | qa<CR>', { desc = 'Save all and quit
 -- Terminal
 vim.keymap.set('n', '<leader>t', '<cmd>terminal<CR>', { desc = 'Open terminal in current buffer' })
 vim.keymap.set('n', '<leader>T', '<cmd>tabnew | terminal<CR>', { desc = 'Open terminal in new tab' })
+vim.keymap.set('n', '<leader>v', '<cmd>vsplit | terminal<CR>', { desc = 'Open terminal in vertical split' })
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Navigate between splits
