@@ -26,8 +26,6 @@ vim.keymap.set('n', '<leader>x', '<cmd>wa | qa<CR>', { desc = 'Save all and quit
 vim.keymap.set('n', '<leader>t', '<cmd>terminal<CR>', { desc = 'Open terminal in current buffer' })
 vim.keymap.set('n', '<leader>T', '<cmd>tabnew | terminal<CR>', { desc = 'Open terminal in new tab' })
 vim.keymap.set('n', '<leader>v', '<cmd>vsplit | terminal<CR>', { desc = 'Open terminal in vertical split' })
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
 -- Navigate between splits
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Go to left split' })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Go to right split' })
@@ -44,6 +42,9 @@ vim.keymap.set('n', '<leader>h', '<C-w>H', { desc = 'Move split left' })
 vim.keymap.set('n', '<leader>l', '<C-w>L', { desc = 'Move split right' })
 vim.keymap.set('n', '<leader>k', '<C-w>K', { desc = 'Move split up' })
 vim.keymap.set('n', '<leader>j', '<C-w>J', { desc = 'Move split down' })
+
+-- Refresh all buffers from disk
+vim.keymap.set('n', '<leader>r', '<cmd>checktime<CR>', { desc = 'Refresh all buffers from disk' })
 
 -- Quick quit current window
 vim.keymap.set('n', '<leader>q', '<cmd>quit<CR>', { desc = 'Quit current window' })

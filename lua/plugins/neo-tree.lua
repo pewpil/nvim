@@ -12,6 +12,16 @@ return {
     vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { desc = 'Toggle file explorer' })
     require('neo-tree').setup {
       filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_by_name = {
+            '.git',
+            '.DS_Store',
+            'thumbs.db',
+            'node_modules',
+            '__pycache__',
+          },
+        },
         keys = {
           ['t'] = 'open_in_tab',
         },

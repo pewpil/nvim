@@ -76,7 +76,7 @@ The leader key is set to `<Space>`.
 
 ### File Explorer (Neo-tree)
 
-*   `<leader>e`: Toggle file explorer.
+*   `<leader>e`: Toggle file explorer (shows hidden/dotfiles except `.git`, `node_modules`, etc).
 *   `o` / `<CR>`: Open file or folder.
 *   `t`: Open in new tab.
 *   `<C-v>`: Open in vertical split.
@@ -94,7 +94,7 @@ The leader key is set to `<Space>`.
 *   `<leader><space>`: Find existing buffers.
 *   `<leader>/`: Fuzzily search in current buffer.
 *   `<leader>gf`: Search Git files.
-*   `<leader>sf`: Search files (all).
+*   `<leader>sf`: Search files (also shows allowlisted directories like `.opencode/`).
 *   `<leader>sh`: Search help tags.
 *   `<leader>sw`: Search current word (grep).
 *   `<leader>sg`: Live grep search.
