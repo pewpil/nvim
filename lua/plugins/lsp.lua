@@ -54,8 +54,14 @@ return {
     })
 
     -- Global handlers (fallback)
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
+    vim.lsp.handlers["textDocument/hover"] = function(err, result, ctx, config)
+      config = vim.tbl_deep_extend("force", config or {}, { border = border })
+      return vim.lsp.handlers.hover(err, result, ctx, config)
+    end
+    vim.lsp.handlers["textDocument/signatureHelp"] = function(err, result, ctx, config)
+      config = vim.tbl_deep_extend("force", config or {}, { border = border })
+      return vim.lsp.handlers.signature_help(err, result, ctx, config)
+    end
 
     -- This function gets run when an LSP connects to a particular buffer.
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -84,6 +90,10 @@ return {
           vim.cmd('tab split')
           vim.lsp.buf.definition()
         end, '[G]oto [D]efinition')
+        nmap('gv', function()
+          vim.cmd('vsplit')
+          vim.lsp.buf.definition()
+        end, '[G]oto [D]efinition (vertical split)')
         nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
         nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
         nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
@@ -126,6 +136,7 @@ return {
         'sqlls',
         'sql-formatter',
         'sqlfluff',
+        'prismals',
       },
     }
 
@@ -232,6 +243,7 @@ return {
       --
 
       gdscript = {},
+      prismals = {},
 
       lua_ls = {
         Lua = {

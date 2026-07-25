@@ -48,3 +48,23 @@ vim.keymap.set('n', '<leader>r', '<cmd>checktime<CR>', { desc = 'Refresh all buf
 
 -- Quick quit current window
 vim.keymap.set('n', '<leader>q', '<cmd>quit<CR>', { desc = 'Quit current window' })
+
+-- Copy the diagnostic error message on the current line to clipboard
+vim.keymap.set('n', '<leader>de', function()
+  local line = vim.fn.line('.') - 1
+  local diags = vim.diagnostic.get(0)
+  local msgs = {}
+  for _, d in ipairs(diags) do
+    if d.range and d.range.start.line <= line and d.range["end"].line >= line then
+      table.insert(msgs, d.message)
+    end
+  end
+  if #msgs > 0 then
+    local text = table.concat(msgs, '\n')
+    vim.fn.setreg('+', text)
+    vim.notify('Copied diagnostic: ' .. text:sub(1, 80) .. (#text > 80 and '...' or ''), vim.log.levels.INFO)
+  else
+    vim.notify('No diagnostic on this line', vim.log.levels.WARN)
+  end
+end, { desc = 'Copy diagnostic message under cursor' })
+

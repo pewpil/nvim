@@ -8,20 +8,30 @@ return {
     opts = {},
   },
   {
-    -- Add treesitter to extend our editing power
     'nvim-treesitter/nvim-treesitter',
-    -- build = ':TSUpdate',
-    opts = {
-      ensure_installed = { 'bash', 'c', 'cpp', 'html', 'lua', 'markdown', 'vim', 'vimdoc', 'dockerfile', 'javascript', 'typescript', 'tsx', 'http', 'json', 'gdscript', 'gdshader', 'godot_resource', 'sql' },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { 'markdown' },
-      },
-      indent = { enable = true, disable = { 'python' } },
-    },
-    config = function(_, opts)
-      require('nvim-treesitter.configs').setup(opts)
+    lazy = false,
+    build = ':TSUpdate sync',
+    config = function()
+      require('nvim-treesitter').setup{}
+      require('nvim-treesitter').install{
+        'bash', 'c', 'cpp', 'css', 'dockerfile', 'gdscript', 'gdshader',
+        'godot_resource', 'html', 'http', 'javascript', 'json', 'lua',
+        'markdown', 'markdown_inline', 'prisma', 'sql', 'tsx', 'typescript',
+        'vim', 'vimdoc',
+      }:wait(300000)
+
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('treesitter_start', { clear = true }),
+        pattern = {
+          'bash', 'c', 'cpp', 'css', 'dockerfile', 'gdscript', 'gdshader',
+          'godot_resource', 'html', 'http', 'javascript', 'javascriptreact',
+          'json', 'lua', 'markdown', 'prisma', 'sql', 'typescript',
+          'typescriptreact', 'tsx', 'vim',
+        },
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
     end,
   },
 }

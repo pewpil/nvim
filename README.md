@@ -5,7 +5,8 @@ This is a Neovim configuration tailored for full-stack web development, with a s
 ## Features
 
 *   **Plugin Manager:** [lazy.nvim](https://github.com/folke/lazy.nvim)
-*   **Language Support:** Lua, JavaScript, TypeScript, Python, HTML, CSS, TailwindCSS, SQL, Docker, Godot (GDScript).
+*   **Language Support:** Lua, JavaScript, TypeScript, Python, HTML, CSS, TailwindCSS, SQL, Docker, Godot (GDScript), Prisma.
+*   **Treesitter:** [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) v3 provides parsers and queries for syntax highlighting. Highlighting is enabled natively by Neovim 0.12.
 *   **Core Plugins:**
     *   **LSP:** [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) (with [mason.nvim](https://github.com/williamboman/mason.nvim) for automatic installation).
     *   **Godot:** [vim-godot](https://github.com/habamax/vim-godot) for Godot Editor integration.
@@ -78,9 +79,8 @@ The leader key is set to `<Space>`.
 
 *   `<leader>e`: Toggle file explorer (shows hidden/dotfiles except `.git`, `node_modules`, etc).
 *   `o` / `<CR>`: Open file or folder.
-*   `t`: Open in new tab.
+*   `t`: Open in new tab (clean tab, no terminal duplication).
 *   `<C-v>`: Open in vertical split.
-*   `<C-s>`: Open in horizontal split.
 *   `a`: Add file/directory.
 *   `d`: Delete.
 *   `r`: Rename.
@@ -112,7 +112,8 @@ The leader key is set to `<Space>`.
 
 ### LSP (Language Server Protocol)
 
-*   `gd`: Go to definition.
+*   `gd`: Go to definition (opens in new tab).
+*   `gv`: Go to definition (opens in vertical split).
 *   `gr`: Go to references.
 *   `gI`: Go to implementation.
 *   `gD`: Go to declaration.

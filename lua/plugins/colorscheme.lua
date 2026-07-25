@@ -3,28 +3,28 @@ return {
   lazy = false,
   priority = 1000,
   opts = {
-    flavour = 'mocha', -- latte, frappe, macchiato, mocha
-    background = { -- :h catppuccin-options
+    flavour = 'mocha',
+    background = {
       light = 'latte',
       dark = 'mocha',
     },
     transparent_background = true,
-    show_end_of_buffer = false, -- show ~ on the ending of the buffer
+    show_end_of_buffer = false,
     term_colors = true,
     no_italic = false,
     native_lsp = {
       enabled = true,
       virtual_text = {
-        errors = { "italic" },
-        hints = { "italic" },
-        warnings = { "italic" },
-        information = { "italic" },
+        errors = { 'italic' },
+        hints = { 'italic' },
+        warnings = { 'italic' },
+        information = { 'italic' },
       },
       underlines = {
-        errors = { "underline" },
-        hints = { "underline" },
-        warnings = { "underline" },
-        information = { "underline" },
+        errors = { 'underline' },
+        hints = { 'underline' },
+        warnings = { 'underline' },
+        information = { 'underline' },
       },
       inlay_hints = {
         inline = false,
@@ -42,24 +42,7 @@ return {
         enabled = true,
         colored_indent_levels = false,
       },
-      mini = {
-        enabled = false,
-      },
-      native_lsp = {
-        enabled = true,
-        virtual_text = {
-          errors = { "italic" },
-          hints = { "italic" },
-          warnings = { "italic" },
-          information = { "italic" },
-        },
-        underlines = {
-          errors = { "underline" },
-          hints = { "underline" },
-          warnings = { "underline" },
-          information = { "underline" },
-        },
-      },
+      mini = { enabled = false },
       barbar = true,
       bufferline = true,
       markdown = true,
@@ -73,16 +56,11 @@ return {
         enabled = true,
         enable_ui = true,
       },
-      toggleterm = {
-        enabled = true,
-        background = true,
-      },
       harpoon = true,
       notify = true,
       telekasten = true,
       symbols_outline = true,
       multicursors = true,
-      nvim_tree = true,
       navic = {
         enabled = true,
         custom_icons = false,
@@ -93,69 +71,33 @@ return {
       illuminate = true,
       fidget = true,
     },
-    color_filter = nil, -- simple function for filtering a color (e.g. `function(rgb) return rgb end`)
-    highlight_overrides = {
-      all = {
-        -- you can override any highlight group with a highlight group name
-        -- must use a catppuccin color here (e.g. `catppuccin.colors.mocha.mauve`)
-        -- or use a hex color (e.g. `#ffffff`)
-        -- Bg = { fg = catppuccin.colors.mocha.red, bg = "#ff0000" },
-      },
-      latte = {},
-      frappe = {},
-      macchiato = {},
-      mocha = {},
-    },
-    custom_highlights = {},
-    integrations_enabled = true,
-    compile = {
-      enabled = false,
-      path = vim.fn.stdpath "cache" .. "/catppuccin",
-    },
+    custom_highlights = function(colors)
+      return {
+        TelescopeBorder = { bg = 'NONE', fg = colors.surface1 },
+        TelescopePromptBorder = { bg = 'NONE', fg = colors.surface1 },
+        TelescopeResultsBorder = { bg = 'NONE', fg = colors.surface1 },
+        TelescopePreviewBorder = { bg = 'NONE', fg = colors.surface1 },
+        TelescopeNormal = { bg = 'NONE' },
+        TelescopePromptNormal = { bg = 'NONE' },
+        TelescopeResultsNormal = { bg = 'NONE' },
+        TelescopePreviewNormal = { bg = 'NONE' },
+        TelescopeTitle = { bg = 'NONE', fg = colors.surface1 },
+        TelescopePromptTitle = { bg = 'NONE', fg = colors.surface1 },
+        TelescopeResultsTitle = { bg = 'NONE', fg = colors.surface1 },
+        TelescopePreviewTitle = { bg = 'NONE', fg = colors.surface1 },
+        CmpPmenuBorder = { bg = 'NONE', fg = colors.surface1 },
+        CmpDocBorder = { bg = 'NONE', fg = colors.surface1 },
+        NormalFloat = { bg = 'NONE' },
+        FloatBorder = { bg = 'NONE', fg = colors.surface1 },
+        FloatTitle = { bg = 'NONE', fg = colors.surface1 },
+        Pmenu = { bg = 'NONE' },
+        LspFloatWinNormal = { bg = 'NONE' },
+        LspFloatWinBorder = { bg = 'NONE', fg = colors.surface1 },
+      }
+    end,
   },
-  config = function()
-    require('catppuccin').setup {
-      flavour = 'mocha',
-      background = { dark = 'mocha' },
-      transparent_background = true,
-      integrations = {
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-        treesitter = true,
-        notify = true,
-        telescope = {
-          enabled = true,
-        },
-        mini = {
-          enabled = true,
-        },
-      },
-      custom_highlights = function(colors)
-        return {
-          TelescopeBorder = { bg = "NONE", fg = colors.surface1 },
-          TelescopePromptBorder = { bg = "NONE", fg = colors.surface1 },
-          TelescopeResultsBorder = { bg = "NONE", fg = colors.surface1 },
-          TelescopePreviewBorder = { bg = "NONE", fg = colors.surface1 },
-          TelescopeNormal = { bg = "NONE" },
-          TelescopePromptNormal = { bg = "NONE" },
-          TelescopeResultsNormal = { bg = "NONE" },
-          TelescopePreviewNormal = { bg = "NONE" },
-          TelescopeTitle = { bg = "NONE", fg = colors.surface1 },
-          TelescopePromptTitle = { bg = "NONE", fg = colors.surface1 },
-          TelescopeResultsTitle = { bg = "NONE", fg = colors.surface1 },
-          TelescopePreviewTitle = { bg = "NONE", fg = colors.surface1 },
-          CmpPmenuBorder = { bg = "NONE", fg = colors.surface1 },
-          CmpDocBorder = { bg = "NONE", fg = colors.surface1 },
-          NormalFloat = { bg = "NONE" },
-          FloatBorder = { bg = "NONE", fg = colors.surface1 },
-          FloatTitle = { bg = "NONE", fg = colors.surface1 },
-          Pmenu = { bg = "NONE" },
-          LspFloatWinNormal = { bg = "NONE" },
-          LspFloatWinBorder = { bg = "NONE", fg = colors.surface1 },
-        }
-      end,
-    }
+  config = function(_, opts)
+    require('catppuccin').setup(opts)
     vim.cmd.colorscheme 'catppuccin'
   end,
 }
