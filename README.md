@@ -5,10 +5,11 @@ This is a Neovim configuration tailored for full-stack web development, with a s
 ## Features
 
 *   **Plugin Manager:** [lazy.nvim](https://github.com/folke/lazy.nvim)
-*   **Language Support:** Lua, JavaScript, TypeScript, Python, HTML, CSS, TailwindCSS, SQL, Docker, Godot (GDScript), Prisma.
-*   **Treesitter:** [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) v3 provides parsers and queries for syntax highlighting. Highlighting is enabled natively by Neovim 0.12.
+*   **Language Support:** Lua, JavaScript, TypeScript, Python, HTML, CSS, TailwindCSS, SQL, Docker, Godot (GDScript), Prisma, Drizzle ORM.
+*   **Treesitter:** [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) v3 provides parsers and queries for syntax highlighting (including SQL injection in tagged template literals). Highlighting is enabled natively by Neovim 0.12.
 *   **Core Plugins:**
     *   **LSP:** [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) (with [mason.nvim](https://github.com/williamboman/mason.nvim) for automatic installation).
+    *   **DAP:** [nvim-dap](https://github.com/mfussenegger/nvim-dap) with Node.js/TypeScript debug configs for Drizzle/Next.js apps.
     *   **Godot:** [vim-godot](https://github.com/habamax/vim-godot) for Godot Editor integration.
     *   **Treesitter:** [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) for syntax highlighting and parsing.
     *   **Fuzzy Finder:** [Telescope](https://github.com/nvim-telescope/telescope.nvim).
@@ -149,7 +150,7 @@ The leader key is set to `<Space>`.
 ### Task Runner (Overseer)
 
 *   `<leader>o`: Toggle Overseer window.
-*   `<leader>or`: Run a task.
+*   `<leader>or`: Run a task (includes drizzle-kit push, generate, migrate, studio).
 *   `<leader>oss`: Save session.
 *   `<leader>osl`: Load session.
 
@@ -164,6 +165,10 @@ The leader key is set to `<Space>`.
 *   `<CR>`: Confirm completion.
 *   **`<C-l>`**: Jump forward through snippet placeholders (cycles back to start).
 *   **`<C-h>`**: Jump backward through snippet placeholders (cycles back to end).
+
+### Markdown (glow)
+
+*   `<leader>mp`: Open current markdown file in a vertical split with glow TUI rendering.
 
 ### Comments (Comment.nvim)
 

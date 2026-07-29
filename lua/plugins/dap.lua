@@ -29,6 +29,29 @@ return {
       },
     }
 
+    dap.configurations.typescript = {
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Launch file',
+        program = '${file}',
+        cwd = '${workspaceFolder}',
+        runtimeExecutable = 'node',
+      },
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Launch via npm',
+        cwd = '${workspaceFolder}',
+        runtimeExecutable = 'npm',
+        runtimeArgs = { 'run', 'dev' },
+      },
+    }
+
+    dap.configurations.javascript = dap.configurations.typescript
+    dap.configurations.typescriptreact = dap.configurations.typescript
+    dap.configurations.javascriptreact = dap.configurations.typescript
+
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations

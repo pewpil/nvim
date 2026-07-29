@@ -10,6 +10,7 @@ return {
       solidjs = { 'eslint_d' },
       python = { 'ruff' },
       dockerfile = { 'hadolint' },
+      sql = { 'sqlfluff' },
     }
     lint.linters.sqlfluff.args = {
       'lint',

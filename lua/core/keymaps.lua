@@ -68,3 +68,33 @@ vim.keymap.set('n', '<leader>de', function()
   end
 end, { desc = 'Copy diagnostic message under cursor' })
 
+-- Markdown preview with glow
+vim.keymap.set('n', '<leader>mp', function()
+  local glow = vim.fn.expand '~/.local/bin/glow'
+  local file = vim.fn.expand '%'
+  if vim.bo.filetype ~= 'markdown' then
+    vim.notify('Not a markdown file', vim.log.levels.WARN)
+    return
+  end
+  if vim.fn.filereadable(glow) == 0 then
+    vim.notify('glow not found at ' .. glow, vim.log.levels.ERROR)
+    return
+  end
+  local output = vim.fn.system { glow, '-p', '-s', 'dark', file }
+  if vim.v.shell_error ~= 0 then
+    vim.notify('glow error:\n' .. output, vim.log.levels.ERROR)
+    return
+  end
+  output = output:gsub('\r', '')
+  output = output:gsub('\27%[[%d;]*%a', '')
+  local lines = vim.split(output, '\n')
+  vim.cmd 'vertical botright new'
+  vim.cmd 'vertical resize 80'
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+  vim.bo.buftype = 'nofile'
+  vim.bo.bufhidden = 'wipe'
+  vim.bo.modifiable = false
+  vim.bo.syntax = 'glowpreview'
+  vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = true, silent = true, desc = 'Close preview' })
+end, { desc = 'Markdown: Preview with glow' })
+
