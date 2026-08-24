@@ -32,7 +32,6 @@ vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Go to right split' })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Go to upper split' })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Go to lower split' })
 
-vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h', { desc = 'Go to left split' })
 vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', { desc = 'Go to right split' })
 vim.keymap.set('t', '<C-k>', '<C-\\><C-n><C-w>k', { desc = 'Go to upper split' })
 vim.keymap.set('t', '<C-j>', '<C-\\><C-n><C-w>j', { desc = 'Go to lower split' })
@@ -97,4 +96,21 @@ vim.keymap.set('n', '<leader>mp', function()
   vim.bo.syntax = 'glowpreview'
   vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = true, silent = true, desc = 'Close preview' })
 end, { desc = 'Markdown: Preview with glow' })
+
+-- Restart Deno LSP (e.g. after editing deno.json)
+vim.keymap.set('n', '<leader>lr', function()
+  local clients = vim.lsp.get_clients({ name = 'denols' })
+  if #clients == 0 then
+    vim.notify('denols is not running', vim.log.levels.WARN)
+    return
+  end
+  for _, client in ipairs(clients) do
+    client.stop()
+  end
+  vim.defer_fn(function()
+    local buf = vim.api.nvim_get_current_buf()
+    vim.lsp.start(vim.lsp.config.denols, { bufnr = buf })
+  end, 100)
+end, { desc = 'Restart Deno LSP' })
+
 

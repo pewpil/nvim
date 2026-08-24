@@ -22,18 +22,20 @@ return {
             '__pycache__',
           },
         },
-        keys = {
-          ['t'] = function(state)
-            local node = state.tree:get_node()
-            if node.type ~= 'file' then
-              state.commands['toggle_directory'](state)
-              return
-            end
-            local path = vim.fn.fnameescape(node.path)
-            vim.cmd('tabnew')
-            vim.cmd('e ' .. path)
-          end,
-          ['<C-v>'] = 'open_vsplit',
+        window = {
+          mappings = {
+            ['t'] = function(state)
+              local node = state.tree:get_node()
+              if node.type ~= 'file' then
+                state.commands['toggle_directory'](state)
+                return
+              end
+              local path = vim.fn.fnameescape(node.path)
+              vim.cmd('tabnew')
+              vim.cmd('e ' .. path)
+            end,
+            ['<C-v>'] = 'open_vsplit',
+          },
         },
       },
       event_handlers = {

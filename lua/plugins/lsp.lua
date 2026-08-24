@@ -120,7 +120,9 @@ return {
 
     -- mason-lspconfig requires that these setup functions are called in this order
     -- before lspconfig setup.
-    require('mason').setup()
+    require('mason').setup {
+      PATH = 'append',
+    }
     require('mason-tool-installer').setup {
       ensure_installed = {
         'prettierd',
@@ -137,6 +139,7 @@ return {
         'sql-formatter',
         'sqlfluff',
         'prismals',
+        'yamlls',
       },
     }
 
@@ -201,6 +204,8 @@ return {
         },
       },
       ts_ls = {
+        root_dir = require('lspconfig.util').root_pattern('package.json', 'tsconfig.json', 'jsconfig.json'),
+        single_file_support = false,
         init_options = {
           preferences = {
           },
@@ -244,6 +249,7 @@ return {
 
       gdscript = {},
       prismals = {},
+      yamlls = {},
 
       lua_ls = {
         Lua = {
@@ -281,10 +287,6 @@ return {
             server_config.settings = config
           end
 
-          if server_name == 'denols' then
-            server_config.root_dir = require('lspconfig.util').root_pattern('deno.json', 'deno.jsonc')
-          end
-
           -- Merge config and enable
           if vim.lsp.config[server_name] then
              for k, v in pairs(server_config) do
@@ -306,5 +308,39 @@ return {
       filetypes = { 'gd', 'gdscript', 'gdscript3' },
     }
     vim.lsp.enable('gdscript')
+
+    vim.api.nvim_create_autocmd('BufWritePost', {
+      group = vim.api.nvim_create_augroup('deno_reload', { clear = true }),
+      pattern = { 'deno.json', 'deno.jsonc' },
+      callback = function()
+        for _, client in ipairs(vim.lsp.get_clients({ name = 'denols' })) do
+          client.request('workspace/didChangeConfiguration', {
+            settings = {
+              deno = (client.config.settings or {}).deno or {},
+            },
+          }, function(err)
+            if err then
+              vim.notify('Deno config reload failed: ' .. err.message, vim.log.levels.ERROR)
+            end
+          end)
+        end
+      end,
+    })
+
+    vim.api.nvim_create_user_command('DenoReload', function()
+      local clients = vim.lsp.get_clients({ name = 'denols' })
+      if #clients == 0 then
+        vim.notify('denols is not running', vim.log.levels.WARN)
+        return
+      end
+      for _, client in ipairs(clients) do
+        client.stop()
+      end
+      vim.defer_fn(function()
+        local buf = vim.api.nvim_get_current_buf()
+        vim.lsp.start(vim.lsp.config.denols, { bufnr = buf })
+      end, 100)
+      vim.notify('denols restarted', vim.log.levels.INFO)
+    end, { desc = 'Restart the Deno LSP' })
   end,
 }

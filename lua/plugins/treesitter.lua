@@ -16,8 +16,8 @@ return {
       require('nvim-treesitter').install{
         'bash', 'c', 'cpp', 'css', 'dockerfile', 'gdscript', 'gdshader',
         'godot_resource', 'html', 'http', 'javascript', 'json', 'lua',
-        'markdown', 'markdown_inline', 'prisma', 'sql', 'tsx', 'typescript',
-        'vim', 'vimdoc',
+        'markdown', 'markdown_inline', 'prisma', 'python', 'sql', 'tsx',
+        'typescript', 'vim', 'vimdoc', 'yaml',
       }:wait(300000)
 
       vim.api.nvim_create_autocmd('FileType', {
@@ -25,8 +25,8 @@ return {
         pattern = {
           'bash', 'c', 'cpp', 'css', 'dockerfile', 'gdscript', 'gdshader',
           'godot_resource', 'html', 'http', 'javascript', 'javascriptreact',
-          'json', 'lua', 'markdown', 'prisma', 'sql', 'typescript',
-          'typescriptreact', 'tsx', 'vim',
+          'json', 'lua', 'markdown', 'prisma', 'python', 'sql',
+          'typescript', 'typescriptreact', 'tsx', 'vim', 'yaml',
         },
         callback = function()
           pcall(vim.treesitter.start)
