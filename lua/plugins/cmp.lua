@@ -44,6 +44,8 @@ return {
 		luasnip.filetype_extend("javascriptreact", { "html" })
 		luasnip.filetype_extend("typescriptreact", { "html" })
 
+		local float_border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+		local float_winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None'
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -54,8 +56,8 @@ return {
 				completeopt = "menu,menuone,noinsert",
 			},
 			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
+				completion = { border = float_border, winhighlight = float_winhighlight, zindex = 1001, scrolloff = 0, col_offset = 0, side_padding = 1, scrollbar = true },
+				documentation = { border = float_border, winhighlight = float_winhighlight, zindex = 1001, scrolloff = 0, col_offset = 0, side_padding = 1, scrollbar = true },
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-n>"] = cmp.mapping.select_next_item(),
