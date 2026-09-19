@@ -23,6 +23,7 @@ vim.opt.undofile = true -- Enable persistent undo
 vim.opt.updatetime = 300 -- Faster completion
 vim.opt.writebackup = false -- If a file is being edited by another program (or was written to file while editing)
 vim.opt.autoread = true -- Automatically re-read files changed outside of neovim
+vim.opt.exrc = true -- Enable project-specific config (.nvim.lua, .nvimrc, .exrc)
 vim.opt.expandtab = true -- Convert tabs to spaces
 vim.opt.shiftwidth = 2 -- The number of spaces inserted for each indentation
 vim.opt.tabstop = 2 -- Insert 2 spaces for a tab

@@ -10,7 +10,11 @@ return {
     -- If you want icons for file types, you can follow these instructions:
     -- https://github.com/nvim-tree/nvim-web-devicons#usage
     vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { desc = 'Toggle file explorer' })
-    require('neo-tree').setup {
+    -- Projects may provide overrides from their `.nvim.lua` (exrc) via
+    -- `vim.g.neotree_project_opts`. This plugin loads eagerly, i.e. before
+    -- exrc runs, so the merge with the options below is re-done right after
+    -- startup on the first event loop tick (before any user interaction).
+    local base_opts = {
       filesystem = {
         filtered_items = {
           hide_dotfiles = false,
@@ -48,5 +52,12 @@ return {
         },
       },
     }
+    require('neo-tree').setup(base_opts)
+    vim.defer_fn(function()
+      local project_opts = vim.g.neotree_project_opts
+      if project_opts ~= nil and next(project_opts) ~= nil then
+        require('neo-tree').setup(vim.tbl_deep_extend('force', base_opts, project_opts))
+      end
+    end, 0)
   end,
 }
