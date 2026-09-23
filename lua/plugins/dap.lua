@@ -55,7 +55,10 @@ return {
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
-      automatic_installation = true,
+      -- NOTE: the `bash` adapter points to `bash-debug-adapter`, which was
+      -- removed from the mason registry; it must be excluded or startup
+      -- fails with `Cannot find package "bash-debug-adapter"`.
+      automatic_installation = { exclude = { 'bash' } },
 
       -- You can provide additional configuration to the handlers,
       -- see mason-nvim-dap README for more information

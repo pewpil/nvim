@@ -21,6 +21,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Load core settings
+-- NOTE: core.env must load before plugins, so mason can find nvm-managed
+-- tools (node/npm) even when Neovim is launched with a minimal PATH.
+require('core.env')
 require('core.options')
 require('core.keymaps')
 
